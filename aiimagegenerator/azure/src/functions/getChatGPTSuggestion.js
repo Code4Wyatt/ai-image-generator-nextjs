@@ -12,7 +12,7 @@ app.http('getChatGPTSuggestion', {
             temperature: 0.8,
         });
         
-        context.log(`Heyssssscs ffHttp function processed request for url "${request.url}"`);
+        context.log(`Http function processed request for url "${request.url}"`);
 
         const responseText = response.data.choices[0].text;
 
