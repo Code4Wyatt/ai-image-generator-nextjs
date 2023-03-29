@@ -1,10 +1,12 @@
 export async function GET(request: Request) {
-  // Connect to Microsoft Azure Endpoint
+    const response = await fetch('http://localhost:7071/api/getImages', { 
+        cache: 'no-store'
+    })
 
-  // Add logic for local host for dev, hosted route for production
-  const response = await fetch("http://localhost:7071/api/getChatGPTSuggestion", { cache: "no-store" });
+    const blob = await response.blob();
+    const textData = await blob.text();
 
-  const textData = await response.text();
+    const data = JSON.parse(textData);
 
-  return new Response(JSON.stringify(textData.trim()), { status: 200 });
+    return new Response(JSON.stringify(data), { status: 200 });
 }
