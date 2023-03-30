@@ -2,9 +2,9 @@
 
 import { FormEvent, useState } from "react";
 import useSWR from "swr";
-// import fetchImages from "../azure/lib/fetchImages";
 import fetchSuggestionFromChatGPT from "../lib/fetchSuggestionFromChatGPT";
 import toast from "react-hot-toast";
+import fetchImages from './../lib/fetchImages';
 
 function PromptInput() {
     const [input, setInput] = useState("");
@@ -18,7 +18,7 @@ function PromptInput() {
         revalidateOnFocus: false,
     });
 
-    const { mutate: updateImages } = useSWR("images", {
+    const { mutate: updateImages } = useSWR("images", fetchImages, {
         revalidateOnFocus: false,
     });
 
